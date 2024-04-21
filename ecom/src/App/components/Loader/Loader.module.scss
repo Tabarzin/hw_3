@@ -1,0 +1,30 @@
+@import "../../../styles/variables.scss";
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  color: var(--loader-bg);
+  animation: spin 1s infinite linear;
+}
+
+.loader.loader_size-l {
+  width: 60px;
+  height: 60px;
+}
+
+.loader.loader_size-m {
+  width: 48px;
+  height: 48px;
+}
+
+.loader.loader_size-s {
+  width: 24px;
+  height: 24px;
+}

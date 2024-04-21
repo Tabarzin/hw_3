@@ -1,0 +1,52 @@
+@import "../../../styles/variables.scss";
+
+.button {
+  --l-button-text: var(--button-primary-text);
+  display: inline-flex;
+  padding: var(--space-s, 14px) var(--space-l, 20px);
+  align-items: center;
+  border-radius: var(--border-radius, 0px);
+  border: none;
+  background-color: var(--button-primary-bg, #518581);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  min-height: 52px;
+
+  @media (max-width: 874px) {
+    padding: 10px 5px;
+  }
+}
+
+.button:hover {
+  --l-button-text: var(--button-primary-text-hover);
+  background: var(--button-primary-bg-hover);
+}
+
+.button:active {
+  --l-button-text: var(--button-primary-text-active);
+  background: var(--button-primary-bg-active);
+}
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.button.button_disabled {
+  --l-button-text: var(--button-primary-text-disabled);
+  background: var(--button-primary-bg-disabled, #d9d9d9);
+}
+
+.button__text,
+.button__loader {
+  transition: color 0.3s ease;
+}
+
+.button__text {
+  color: var(--l-button-text);
+}
+
+.button .button__loader {
+  color: var(--l-button-text);
+  margin-right: 8px;
+  flex-shrink: 0;
+}

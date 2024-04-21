@@ -1,0 +1,50 @@
+@import "../../../styles/variables.scss";
+
+.checkbox_wrapper {
+  display: block;
+  position: relative;
+  background-color: var(--checkbox-bg);
+  border: 1px solid var(--checkbox-border);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.checkbox_wrapper:hover {
+  border: 1px solid var(--checkbox-border-hover, #518581);
+  background: var(--checkbox-bg-hover, #fff);
+}
+
+.checkbox_wrapper:hover .checkbox:checked ~ .checkbox__mark {
+  color: var(--checkbox-check-hover);
+}
+
+.checkbox_wrapper_disabled {
+  background-color: var(--checkbox-bg-disabled);
+  border-color: var(--checkbox-border-disabled);
+  pointer-events: none;
+}
+
+.checkbox_wrapper_disabled .checkbox:checked ~ .checkbox__mark {
+  color: var(--checkbox-check-disabled);
+}
+
+.checkbox {
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.icon.checkbox__mark {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  color: transparent;
+  transition: color 0.1 ease;
+}
+
+.checkbox:checked ~ .checkbox__mark {
+  color: var(--checkbox-check);
+}

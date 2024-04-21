@@ -1,0 +1,73 @@
+@import "../../../styles/variables.scss";
+
+.text {
+  font-family: Roboto;
+  font-weight: 400;
+}
+
+.text.text_view-button {
+  font-size: 18px;
+  line-height: 18px;
+
+  @media (max-width: 874px) {
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.text.text_view-title {
+  font-size: 44px;
+  line-height: 48px;
+}
+
+.text.text_view-p-20 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.text.text_view-p-18 {
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.text.text_view-p-16 {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.text.text_view-p-14 {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.text.text_weight-normal {
+  font-weight: 400;
+}
+
+.text.text_weight-medium {
+  font-weight: 500;
+}
+
+.text.text_weight-bold {
+  font-weight: 700;
+}
+
+.text.text_color-primary {
+  color: var(--text-primary);
+}
+
+.text.text_color-secondary {
+  color: var(--text-secondary);
+}
+
+.text.text_color-accent {
+  color: var(--text-accent);
+}
+
+.text.text_multi-ellipsis {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--max-lines-count);
+}

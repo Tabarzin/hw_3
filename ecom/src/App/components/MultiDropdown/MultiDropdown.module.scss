@@ -1,0 +1,68 @@
+@import "../../../styles/variables.scss";
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown_disabled {
+  pointer-events: none;
+}
+
+.dropdown_open .dropdown__input {
+  border: 1px solid var(--input-border-focus);
+}
+
+.dropdown__options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+
+  /* background-color: var(--dropdown-options-bg); */
+  background-color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.dropdown__option {
+  appearance: none;
+  background: none;
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 48px;
+  padding: var(--space-s) var(--space-xs);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.dropdown__option:hover {
+  color: var(--text-secondary);
+}
+
+.dropdown__option_selected {
+  color: var(--text-secondary);
+}
+/* .dropdown-options {
+  display: flex;
+  width: 300px;
+  flex-direction: column;
+   align-items: flex-start; 
+  border-radius: var(--border-radius, 0px);
+   background: var(--dropdown-options-bg, #fff); 
+  
+
+  
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+
+ */
+
+.option {
+  display: flex;
+  padding: var(--space-s, 14px) var(--space-xs, 12px);
+
+  justify-content: left;
+  align-items: center;
+  align-self: stretch;
+}

@@ -1,0 +1,47 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/styles.scss";
+
+.products {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input_filter {
+  display: flex;
+  flex-direction: column;
+}
+.input_btn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: var(--space-m);
+}
+
+.input_text {
+  color: var(--input-placeholder, #afadb5);
+  flex-grow: 1;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 125% */
+}
+.filter {
+  width: 300px;
+  height: 52px;
+  margin-bottom: var(--space-xl);
+}
+
+.cards_block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-l, 32px);
+}
+
+.product_number {
+  display: flex;
+  width: 300px;
+  align-items: center;
+  gap: var(--space-m, 24px);
+}
