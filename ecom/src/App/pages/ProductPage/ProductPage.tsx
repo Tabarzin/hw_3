@@ -1,4 +1,4 @@
-import Text from '../../components/Text';
+import Text from '@components/Text';
 import axios from 'axios';
 import * as React from 'react';
 import { Link, useParams } from 'react-router-dom';
@@ -11,10 +11,10 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/scrollbar';
 
 import styles from './ProductPage.module.scss';
-import Button from '../../components/Button';
-import Header from '../../components/Header';
+import Button from '@components/Button';
+import Header from '@components/Header';
 import RelatedItems from './RelatedItems';
-import BackButton from '../../components/BackButton';
+import BackButton from '@components/BackButton';
 import { AxiosResponse } from 'axios';
 
 interface Category {
@@ -47,7 +47,7 @@ const ProductPage: React.FC = ({}) => {
   return (
     <div>
       <Header />
-      <Link className={styles.link} to={'/'}>
+      <Link className={styles.link} to="/">
         <BackButton />
       </Link>
       <div className={styles.product_wrapper}>

@@ -6,12 +6,23 @@
     "module": "ESNext",
     "skipLibCheck": true,
 
-    "baseUrl": "src",
+    // "baseUrl": "src",
+    // "paths": {
+    //   "components/*": ["App/components/*"],
+    //   "pages/*": ["App/pages/*"],
+    //   "configs": ["config/*"],
+    //   "styles/*": ["styles/*"],
+    //   "assets": ["assets/*"]
+    // },
+
+    "baseUrl": ".",
     "paths": {
-      "components": ["components/*"],
-      "configs": ["config/*"],
-      "styles": ["styles/*"],
-      "assets": ["assets/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/App/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/App/pages/*"],
+      "@styles/*": ["src/App/styles/*"],
+      "@api/*": ["src/api/*"]
     },
 
     "moduleResolution": "node",

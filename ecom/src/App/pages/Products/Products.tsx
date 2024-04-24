@@ -1,11 +1,11 @@
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import MultiDropdown from '../../components/MultiDropdown';
-import Text from '../../components/Text';
+import Button from '@components/Button';
+import Input from '@components/Input';
+import MultiDropdown from '@components/MultiDropdown';
+import Text from '@components/Text';
 import ProductCards from './ProductCards';
 import ProductsTitle from './ProductsTitle';
 import styles from './Products.module.scss';
-import Header from '../../components/Header';
+import Header from '@components/Header';
 
 const Products = () => {
   const getPlaceholderText = (selectedOptions: Option[]) => {

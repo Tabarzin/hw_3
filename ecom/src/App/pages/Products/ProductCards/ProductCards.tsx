@@ -1,5 +1,8 @@
-import Button from '../../../components/Button';
-import Card from '../../../components/Card';
+// import Button from '../../../components/Button';
+// import Card from '../../../components/Card';
+
+import Button from '@components/Button';
+import Card from '@components/Card';
 
 import { getAllProducts } from '../../../../api/api';
 
@@ -7,7 +10,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../../Pagination';
 import styles from './ProductCards.module.scss';
-import { Product } from '../../../../api/api';
+import { Product } from '@api/api';
 
 const ProductCards: React.FC = () => {
   const [products, setProducts] = React.useState<Product[]>([]);
@@ -28,12 +31,26 @@ const ProductCards: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const totalPages = Math.ceil(products.length / productsPerPage);
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  // const totalPages = Math.ceil(products.length / productsPerPage);
+  // const indexOfLastProduct = currentPage * productsPerPage;
+  // const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  // const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const totalPages = React.useMemo(() => {
+    return Math.ceil(products.length / productsPerPage);
+  }, [products.length, productsPerPage]);
+
+  const indexOfLastProduct = React.useMemo(() => {
+    return currentPage * productsPerPage;
+  }, [currentPage, productsPerPage]);
+
+  const indexOfFirstProduct = React.useMemo(() => {
+    return indexOfLastProduct - productsPerPage;
+  }, [indexOfLastProduct, productsPerPage]);
+
+  const currentProducts = React.useMemo(() => {
+    return products.slice(indexOfFirstProduct, indexOfLastProduct);
+  }, [products, indexOfFirstProduct, indexOfLastProduct]);
 
   return (
     <div>
