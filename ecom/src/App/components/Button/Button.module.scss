@@ -12,6 +12,23 @@
   cursor: pointer;
   min-height: 52px;
 
+  &_disabled {
+    --l-button-text: var(--button-primary-text-disabled);
+    background: var(--button-primary-bg-disabled, #d9d9d9);
+  }
+
+  &__text {
+    transition: color 0.3s ease;
+    color: var(--l-button-text);
+  }
+
+  &__loader {
+    transition: color 0.3s ease;
+    color: var(--l-button-text);
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
   @media (max-width: 874px) {
     padding: 10px 5px;
   }
@@ -29,24 +46,4 @@
 
 .button:disabled {
   pointer-events: none;
-}
-
-.button.button_disabled {
-  --l-button-text: var(--button-primary-text-disabled);
-  background: var(--button-primary-bg-disabled, #d9d9d9);
-}
-
-.button__text,
-.button__loader {
-  transition: color 0.3s ease;
-}
-
-.button__text {
-  color: var(--l-button-text);
-}
-
-.button .button__loader {
-  color: var(--l-button-text);
-  margin-right: 8px;
-  flex-shrink: 0;
 }

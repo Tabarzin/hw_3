@@ -14,7 +14,7 @@ const BackButton = () => {
           strokeLinejoin="round"
         />
       </svg>
-      <Text className={styles.text} view={'p-20'}>
+      <Text className={styles.backbtn__text} view={'p-20'}>
         Назад
       </Text>
     </div>
