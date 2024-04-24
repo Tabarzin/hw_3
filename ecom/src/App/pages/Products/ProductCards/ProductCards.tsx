@@ -33,7 +33,7 @@ const ProductCards: React.FC = () => {
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -52,7 +52,7 @@ const ProductCards: React.FC = () => {
           </Link>
         ))}
       </div>
-      <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate} />
+      <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
     </div>
   );
 };

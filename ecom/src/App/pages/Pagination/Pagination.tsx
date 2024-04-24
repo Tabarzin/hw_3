@@ -4,10 +4,10 @@ import styles from './Pagination.module.scss';
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  paginate: (pageNumber: number) => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, paginate }) => {
+const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, setCurrentPage }) => {
   const pageNumbers = [];
   const maxPagesToShow = 10;
   const maxPagesBeforeCurrentPage = Math.floor(maxPagesToShow / 2);
@@ -26,13 +26,19 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, pagina
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
-      paginate(currentPage - 1);
+      setCurrentPage(currentPage - 1);
     }
   };
 
+  for (let i = 1; i <= totalPages; i++) {
+    if (totalPages <= 10 || i === 1 || i === totalPages || Math.abs(currentPage - i) < 2) {
+      pageNumbers.push(i);
+    }
+  }
+
   const handleNextPage = () => {
     if (currentPage < totalPages) {
-      paginate(currentPage + 1);
+      setCurrentPage(currentPage + 1);
     }
   };
 
@@ -65,7 +71,10 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, pagina
       )}
       {pageNumbers.map((number) => (
         <li key={number} className={number === currentPage ? styles.active : ''}>
-          <button onClick={() => paginate(number)} style={{ color: number === currentPage ? 'white' : 'inherit' }}>
+          <button
+            onClick={() => setCurrentPage(number)}
+            style={{ color: number === currentPage ? 'white' : 'inherit' }}
+          >
             {number}
           </button>
         </li>
