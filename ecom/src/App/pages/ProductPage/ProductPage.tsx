@@ -17,10 +17,6 @@ import RelatedItems from './RelatedItems';
 import BackButton from '../../components/BackButton';
 import { AxiosResponse } from 'axios';
 
-interface ProductDetailsProps {
-  productId: string;
-}
-
 interface Category {
   id: number;
   name: string;
@@ -35,7 +31,9 @@ interface Product {
   images: string[];
 }
 
-const ProductPage: React.FC<ProductDetailsProps> = ({ productId }) => {
+const swiperModules = [Navigation, Scrollbar, A11y];
+
+const ProductPage: React.FC = ({}) => {
   const { id } = useParams<{ id: string }>();
   const [productDetails, setProductDetails] = React.useState<any>({});
 
@@ -56,7 +54,7 @@ const ProductPage: React.FC<ProductDetailsProps> = ({ productId }) => {
         <div className={styles.product}>
           <div className={styles.product_container}>
             <Swiper
-              modules={[Navigation, Scrollbar, A11y]}
+              modules={swiperModules}
               spaceBetween={40}
               slidesPerView={1}
               navigation
