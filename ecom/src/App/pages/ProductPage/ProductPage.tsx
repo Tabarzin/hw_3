@@ -17,32 +17,101 @@ import RelatedItems from './RelatedItems';
 import BackButton from '@components/BackButton';
 import { AxiosResponse } from 'axios';
 
-interface Category {
-  id: number;
-  name: string;
-}
+// interface Category {
+//   id: number;
+//   name: string;
+// }
 
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  category: Category;
-  images: string[];
-}
+// interface Product {
+//   id: number;
+//   title: string;
+//   description: string;
+//   price: number;
+//   category: Category;
+//   images: string[];
+// }
+
+// const swiperModules = [Navigation, Scrollbar, A11y];
+
+// const ProductPage: React.FC = ({}) => {
+//   const { id } = useParams<{ id: string }>();
+//   const [productDetails, setProductDetails] = React.useState<any>({});
+
+//   React.useEffect(() => {
+//     axios
+//       .get<Product[]>(`https://api.escuelajs.co/api/v1/products/${id}`)
+//       .then((response: AxiosResponse<Product[]>) => setProductDetails(response.data))
+//       .catch((error: Error) => console.log(error));
+//   }, [id]);
+
+//   return (
+//     <div>
+//       <Header />
+//       <Link className={styles.link} to="/">
+//         <BackButton />
+//       </Link>
+//       <div className={styles.product_wrapper}>
+//         <div className={styles.product}>
+//           <div className={styles.product_container}>
+//             <Swiper
+//               modules={swiperModules}
+//               spaceBetween={40}
+//               slidesPerView={1}
+//               navigation
+//               pagination={{ clickable: true }}
+//             >
+//               {productDetails.images &&
+//                 productDetails.images.map((imageUrl: string, index: number) => (
+//                   <SwiperSlide key={index}>
+//                     <img
+//                       key={index}
+//                       className={styles.product_image}
+//                       src={imageUrl}
+//                       alt={`Product Image ${index + 1} `}
+//                     />
+//                   </SwiperSlide>
+//                 ))}
+//             </Swiper>
+
+//             <div className={styles.product_text_block}>
+//               <Text view="title" className={styles.title}>
+//                 {productDetails.title}
+//               </Text>
+//               <Text view="p-20" maxLines={2} className={styles.description}>
+//                 {productDetails.description}
+//               </Text>
+//               <Text view="title" className={styles.price}>{`$${productDetails.price}`}</Text>
+//               <div className={styles.buttons}>
+//                 <Button>Buy Now</Button>
+//                 <Button>Add to Cart</Button>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         {<RelatedItems categoryId={productDetails.category?.id} />}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductPage;
+
+import { observer } from 'mobx-react-lite';
+import singleProductStore from '@stores/SingleProductStore';
 
 const swiperModules = [Navigation, Scrollbar, A11y];
 
-const ProductPage: React.FC = ({}) => {
+const ProductPage = observer(() => {
   const { id } = useParams<{ id: string }>();
-  const [productDetails, setProductDetails] = React.useState<any>({});
+  const { product, loading, error, fetchProduct } = singleProductStore;
 
   React.useEffect(() => {
-    axios
-      .get<Product[]>(`https://api.escuelajs.co/api/v1/products/${id}`)
-      .then((response: AxiosResponse<Product[]>) => setProductDetails(response.data))
-      .catch((error: Error) => console.log(error));
-  }, [id]);
+    fetchProduct(id);
+  }, [id, fetchProduct]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!product) return null;
 
   return (
     <div>
@@ -60,8 +129,8 @@ const ProductPage: React.FC = ({}) => {
               navigation
               pagination={{ clickable: true }}
             >
-              {productDetails.images &&
-                productDetails.images.map((imageUrl: string, index: number) => (
+              {product.images &&
+                product.images.map((imageUrl: string, index: number) => (
                   <SwiperSlide key={index}>
                     <img
                       key={index}
@@ -75,12 +144,12 @@ const ProductPage: React.FC = ({}) => {
 
             <div className={styles.product_text_block}>
               <Text view="title" className={styles.title}>
-                {productDetails.title}
+                {product.title}
               </Text>
               <Text view="p-20" maxLines={2} className={styles.description}>
-                {productDetails.description}
+                {product.description}
               </Text>
-              <Text view="title" className={styles.price}>{`$${productDetails.price}`}</Text>
+              <Text view="title" className={styles.price}>{`$${product.price}`}</Text>
               <div className={styles.buttons}>
                 <Button>Buy Now</Button>
                 <Button>Add to Cart</Button>
@@ -88,10 +157,10 @@ const ProductPage: React.FC = ({}) => {
             </div>
           </div>
         </div>
-        {<RelatedItems categoryId={productDetails.category?.id} />}
+        {<RelatedItems categoryId={product.category?.id} />}
       </div>
     </div>
   );
-};
+});
 
 export default ProductPage;
