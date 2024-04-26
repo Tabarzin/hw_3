@@ -1,75 +1,74 @@
-// import Button from '../../../components/Button';
-// import Card from '../../../components/Card';
-
 import Button from '@components/Button';
 import Card from '@components/Card';
-
-import { getAllProducts } from '../../../../api/api';
-
+import { getAllProducts } from '@api/api';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import Pagination from '../../Pagination';
 import styles from './ProductCards.module.scss';
 import { Product } from '@api/api';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProductCards: React.FC = () => {
   const [products, setProducts] = React.useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const productsPerPage = 9;
+  const [hasMore, setHasMore] = React.useState(true);
+
+  const fetchMoreProducts = async () => {
+    try {
+      const fetchedProducts = await getAllProducts();
+      setProducts((prevProducts) => [...prevProducts, ...fetchedProducts]);
+      setHasMore(fetchedProducts.length > 0);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
 
   React.useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const fetchedProducts = await getAllProducts();
-
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    };
-
-    fetchProducts();
+    fetchMoreProducts();
   }, []);
 
-  // const totalPages = Math.ceil(products.length / productsPerPage);
-  // const indexOfLastProduct = currentPage * productsPerPage;
-  // const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  // const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const normalizeImageUrl = (imageUrl: string): string => {
+    if (imageUrl.startsWith('["') && imageUrl.endsWith('"]')) {
+      let extractedUrl = imageUrl.substring(2, imageUrl.length - 2);
 
-  const totalPages = React.useMemo(() => {
-    return Math.ceil(products.length / productsPerPage);
-  }, [products.length, productsPerPage]);
+      extractedUrl = extractedUrl.replace(/\\/g, '');
 
-  const indexOfLastProduct = React.useMemo(() => {
-    return currentPage * productsPerPage;
-  }, [currentPage, productsPerPage]);
+      if (extractedUrl.startsWith('"') && extractedUrl.endsWith('"')) {
+        extractedUrl = extractedUrl.substring(1, extractedUrl.length - 1);
+      }
+      return extractedUrl;
+    }
 
-  const indexOfFirstProduct = React.useMemo(() => {
-    return indexOfLastProduct - productsPerPage;
-  }, [indexOfLastProduct, productsPerPage]);
-
-  const currentProducts = React.useMemo(() => {
-    return products.slice(indexOfFirstProduct, indexOfLastProduct);
-  }, [products, indexOfFirstProduct, indexOfLastProduct]);
+    return imageUrl;
+  };
 
   return (
     <div>
-      <div className={styles.cards}>
-        {currentProducts.map((product) => (
-          <Link key={product.id} to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
-            <Card
-              key={product.id}
-              image={product.images[0]}
-              captionSlot={product.category.name}
-              title={product.title}
-              subtitle={product.description}
-              contentSlot={`$${product.price}`}
-              actionSlot={<Button>Add to Cart</Button>}
-            />
-          </Link>
-        ))}
-      </div>
-      <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      <InfiniteScroll
+        dataLength={products.length}
+        next={fetchMoreProducts}
+        hasMore={hasMore}
+        loader={<h4>Loading...</h4>}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen all the products</b>
+          </p>
+        }
+      >
+        <div className={styles.cards}>
+          {products.map((product, index) => (
+            <Link key={`${product.id}-${index}`} to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+              <Card
+                key={`${product.id}-${index}`}
+                image={normalizeImageUrl(product.images[0])}
+                captionSlot={product.category.name}
+                title={product.title}
+                subtitle={product.description}
+                contentSlot={`$${product.price}`}
+                actionSlot={<Button>Add to Cart</Button>}
+              />
+            </Link>
+          ))}
+        </div>
+      </InfiniteScroll>
     </div>
   );
 };
