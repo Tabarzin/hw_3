@@ -22,7 +22,8 @@
       "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/App/pages/*"],
       "@styles/*": ["src/App/styles/*"],
-      "@api/*": ["src/api/*"]
+      "@api/*": ["src/api/*"],
+      "@stores/*": ["src/stores/*"]
     },
 
     "moduleResolution": "node",

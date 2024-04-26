@@ -11,6 +11,7 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/App/components'),
       '@pages': path.resolve(__dirname, './src/App/pages'),
       '@api': path.resolve(__dirname, './src/api'),
+      '@stores': path.resolve(__dirname, './src/stores'),
     },
   },
   plugins: [react()],

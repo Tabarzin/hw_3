@@ -1,5 +1,9 @@
-# E-commerce
+# ДЗ №3
 
--[Figma](https://www.figma.com/file/V105wd67bkF2X7oOzCLPEG/E-commerce?type=design&node-id=0-1&mode=design)
-
--[Задание](https://docs.google.com/spreadsheets/d/1dyUxSdiGFXSULyJoCAaWT_mw7ucOpKMJKJgJOcMnSzU/edit#gid=0)
+1. Логику на Mobx. Необходимо переписать логику загрузки/хранения/использования данных на Mobx.
+2. Mobx-сторы. Реализовать разделение логики на Mobx-сторы.
+3. Поиск. Добавить нахождение списка сущностей по введенной строке (см. подробную информацию по выбранному проекту).
+4. Реализовал бесконечный скролл ([react-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component)
+   )
+5. Фильтрация. Реализовать фильтрацию сущностей (см. подробную информацию по выбранному проекту)
+   Query-параметры. Сохранять введенное значение в поиске, фильтре и параметры пагинации в query-параметрах. В итоге при перезагрузке страницы списка должны отображаться те же данные, что были до.
