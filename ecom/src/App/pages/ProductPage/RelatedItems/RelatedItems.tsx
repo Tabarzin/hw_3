@@ -8,9 +8,9 @@ import { AxiosResponse } from 'axios';
 import { observer } from 'mobx-react-lite';
 import relatedItemsStore from '@stores/RelatedItemsStore';
 
-// interface RelatedItemsProps {
-//   categoryId: number;
-// }
+interface RelatedItemsProps {
+  categoryId: number;
+}
 
 // interface Category {
 //   id: number;
