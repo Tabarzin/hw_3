@@ -6,31 +6,31 @@ import { Link } from 'react-router-dom';
 import styles from './ProductCards.module.scss';
 import productStore from '@stores/ProductStore';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
 import { searchStore } from '@stores/SearchStore';
+import { runInAction } from 'mobx';
 
 const ProductCards = observer(() => {
   const { products, hasMore, fetchProducts, normalizeImageUrl } = productStore;
-  const { filteredProducts } = searchStore;
-
-  const productsToDisplay = searchStore.searchTerm ? filteredProducts : products;
+  const { filteredProducts, searchTerm } = searchStore;
 
   React.useEffect(() => {
-    if (!searchStore.searchTerm) {
-      fetchProducts();
-    }
-  }, []);
+    runInAction(() => {
+      if (!searchTerm && filteredProducts.length === 0 && products.length === 0) {
+        fetchProducts();
+      }
+    });
+  }, [searchTerm, products.length, filteredProducts.length]);
 
   return (
     <InfiniteScroll
-      dataLength={productsToDisplay.length}
+      dataLength={filteredProducts.length}
       next={fetchProducts}
-      hasMore={hasMore && !searchStore.searchTerm}
+      hasMore={hasMore && !searchTerm && filteredProducts.length === 0}
       loader={<h4>Loading...</h4>}
       endMessage={<p>**Yay! You have seen all the products**</p>}
     >
       <div className={styles.cards}>
-        {productsToDisplay.map((product, index) => (
+        {filteredProducts.map((product, index) => (
           <Link key={`${product.id}-${index}`} to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
             <Card
               key={`${product.id}-${index}`}

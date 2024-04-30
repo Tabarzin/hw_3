@@ -1,15 +1,15 @@
 import Button from '@components/Button';
 import Input from '@components/Input';
-import MultiDropdown from '@components/MultiDropdown';
 import Text from '@components/Text';
 import ProductCards from './ProductCards';
 import ProductsTitle from './ProductsTitle';
 import styles from './Products.module.scss';
 import Header from '@components/Header';
-
 import { observer } from 'mobx-react-lite';
 import { searchStore } from '@stores/SearchStore';
 import { runInAction } from 'mobx';
+import { categoryStore } from '@/stores/CategoryStore';
+import Filter from './Filter/Filter';
 
 const Products = observer(() => {
   const handleSearch = (value: string) => {
@@ -49,14 +49,7 @@ const Products = observer(() => {
           </form>
         </div>
         <div className={styles.filter}>
-          <MultiDropdown
-            options={[]}
-            value={[]}
-            onChange={function (value: Option[]): void {
-              throw new Error('Function not implemented.');
-            }}
-            getTitle={getPlaceholderText}
-          />
+          <Filter />
         </div>
       </div>
       <div className={styles.cards_block}>
@@ -68,7 +61,8 @@ const Products = observer(() => {
             {searchStore.filteredProducts.length}
           </Text>
         </div>
-        <ProductCards products={searchStore.filteredProducts} />
+        {/* <ProductCards products={searchStore.filteredProducts} /> */}
+        <ProductCards products={categoryStore.getFilteredProducts} />
       </div>
     </main>
   );

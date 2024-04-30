@@ -18,8 +18,8 @@
   top: calc(100% + 8px);
   left: 0;
   width: 100%;
+  z-index: 3;
 
-  /* background-color: var(--dropdown-options-bg); */
   background-color: #fff;
   box-shadow: var(--shadow);
 }
