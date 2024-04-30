@@ -10,9 +10,16 @@ import { searchStore } from '@stores/SearchStore';
 import { runInAction } from 'mobx';
 import { categoryStore } from '@/stores/CategoryStore';
 import Filter from './Filter/Filter';
+import { useSearchParams } from 'react-router-dom';
 
 const Products = observer(() => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchTerm = searchParams.get('search') || '';
+  searchStore.setSearchTerm(searchTerm);
+
   const handleSearch = (value: string) => {
+    setSearchParams({ search: value });
     runInAction(() => {
       searchStore.setSearchTerm(value);
     });
@@ -24,13 +31,6 @@ const Products = observer(() => {
       handleSearch(searchStore.searchTerm);
     });
   };
-
-  // const getPlaceholderText = (selectedOptions: Option[]) => {
-  //   if (selectedOptions.length === 0) {
-  //     return 'Filter';
-  //   }
-  //   return 'Filter';
-  // };
 
   return (
     <main className={styles.products}>

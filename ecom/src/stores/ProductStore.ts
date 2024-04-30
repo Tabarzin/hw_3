@@ -7,12 +7,12 @@ class ProductStore {
 
   constructor() {
     makeAutoObservable(this, { fetchProducts: action.bound, normalizeImageUrl: action.bound });
+    this.fetchProducts();
   }
 
   fetchProducts = async () => {
     try {
       const fetchedProducts = await getAllProducts();
-
       runInAction(() => {
         this.products = [...this.products, ...fetchedProducts];
         this.hasMore = fetchedProducts.length > 0;

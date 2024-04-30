@@ -15,11 +15,12 @@ const ProductCards = observer(() => {
 
   React.useEffect(() => {
     runInAction(() => {
-      if (!searchTerm && filteredProducts.length === 0 && products.length === 0) {
+      if (searchTerm && products.length > 0) {
+      } else if (products.length === 0) {
         fetchProducts();
       }
     });
-  }, [searchTerm, products.length, filteredProducts.length]);
+  }, [searchTerm, products.length]);
 
   return (
     <InfiniteScroll
