@@ -1,5 +1,5 @@
 import { Product } from '@/api/api';
-import { makeAutoObservable, computed } from 'mobx';
+import { makeAutoObservable, computed, action, runInAction } from 'mobx';
 import productStore from './ProductStore';
 
 class SearchStore {
@@ -11,7 +11,9 @@ class SearchStore {
   }
 
   setSearchTerm(term: string) {
-    this.searchTerm = term;
+    runInAction(() => {
+      this.searchTerm = term;
+    });
   }
 
   filterByCategories(categoryIds: number[]) {

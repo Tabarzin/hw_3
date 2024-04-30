@@ -25,12 +25,12 @@ const Products = observer(() => {
     });
   };
 
-  const getPlaceholderText = (selectedOptions: Option[]) => {
-    if (selectedOptions.length === 0) {
-      return 'Filter';
-    }
-    return 'Filter';
-  };
+  // const getPlaceholderText = (selectedOptions: Option[]) => {
+  //   if (selectedOptions.length === 0) {
+  //     return 'Filter';
+  //   }
+  //   return 'Filter';
+  // };
 
   return (
     <main className={styles.products}>
