@@ -1,19 +1,19 @@
-// @import "../../../styles/variables.scss";
-
 @import "@styles/variables.scss";
 
 .card {
   cursor: pointer;
   width: 100%;
   max-width: 360px;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   border-radius: var(--border-radius, 0px);
   background: var(--card-bg, #fff);
   overflow: hidden;
 }
 
 .card:hover {
-  box-shadow: var(--shadow);
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .card__header {
