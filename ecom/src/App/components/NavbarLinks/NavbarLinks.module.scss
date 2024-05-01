@@ -1,0 +1,56 @@
+// @import "../../../styles/variables.scss";
+// @import "../../../styles/styles.scss";
+
+@import "@styles/variables.scss";
+@import "@styles/styles.scss";
+
+.navbarlinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  justify-content: space-around;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    margin-bottom: 45px;
+  }
+}
+
+.navbarlinks_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  color: var(--text-primary, var(--brand, #518581));
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 122.222% */
+  text-decoration: none;
+}
+
+.navbarlinks_text:hover {
+  color: var(--text-accent);
+}
+
+.navbarlinks ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+}
+
+.text-accent {
+  border-bottom: 3px solid var(--text-accent);
+  padding-bottom: 38px;
+}
+
+.active {
+  color: var(--text-accent);
+  text-decoration: underline;
+  text-underline-offset: 20px;
+  text-decoration-thickness: 3px;
+  pointer-events: none;
+}

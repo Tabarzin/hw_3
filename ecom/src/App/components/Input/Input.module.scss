@@ -1,0 +1,53 @@
+// @import "../../../styles/variables.scss";
+@import "@styles/variables.scss";
+
+.input_wrapper {
+  display: flex;
+  color: var(--input-text);
+  background: var(--input-bg, #fff);
+
+  padding: var(--space-s, 14px) var(--space-xs, 12px);
+
+  height: 52px;
+  border: 1px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2 ease;
+}
+
+.input_wrapper:focus-within {
+  background: var(--input-bg-focus, #fff);
+  color: var(--input-text-focus);
+  border-color: var(--input-border-focus);
+}
+
+.input_wrapper_disabled .input {
+  color: var(--input-text-disabled);
+  border-color: var(--input-border-disabled, #fff);
+  background: var(--input-bg-disabled, #fff);
+}
+
+.input {
+  appearance: none;
+  border: none;
+  background: none;
+  outline: none;
+  margin: 0;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--input-placeholder);
+}
+
+.input::placeholder {
+  color: var(--input-placeholder);
+}
+
+.input_after {
+  flex-shrink: 0;
+  margin-left: var(--space-xxs);
+  color: var(--input-placeholder);
+}

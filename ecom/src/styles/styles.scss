@@ -1,0 +1,27 @@
+@import "@styles/Roboto/fonts.scss";
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+
+  padding: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+figure,
+pre {
+  margin: 0;
+}

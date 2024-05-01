@@ -1,0 +1,58 @@
+// @import "../../../styles/variables.scss";
+// @import "../../../styles/styles.scss";
+
+@import "@styles/variables.scss";
+@import "@styles/styles.scss";
+
+.product_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  margin-bottom: var(--space-xl);
+}
+
+.product_container {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.product_image {
+  width: 100%;
+  height: auto;
+}
+
+.product_text_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.button_white {
+  background-color: #fff;
+}
+
+.title {
+  margin-bottom: var(--space-m);
+}
+
+.description {
+  margin-bottom: 90px;
+  width: 34rem;
+}
+
+.price {
+  margin-bottom: var(--space-xl);
+}
+
+.buttons {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.link {
+  text-decoration: none;
+}
