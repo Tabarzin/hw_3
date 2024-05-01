@@ -3,6 +3,7 @@ import AboutUs from './pages/AboutUs';
 import Products from './pages/Products';
 import ProductPage from './pages/ProductPage';
 import Categories from './pages/Categories';
+import './App.module.scss';
 
 const App = () => {
   return (
