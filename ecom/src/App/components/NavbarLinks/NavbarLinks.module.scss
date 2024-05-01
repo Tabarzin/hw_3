@@ -9,6 +9,11 @@
   align-items: center;
   gap: var(--space-xl);
   justify-content: space-around;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    margin-bottom: 45px;
+  }
 }
 
 .navbarlinks_text {

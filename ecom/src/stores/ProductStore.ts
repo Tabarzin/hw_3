@@ -25,10 +25,13 @@ class ProductStore {
   normalizeImageUrl = (imageUrl: string): string => {
     if (imageUrl.startsWith('["') && imageUrl.endsWith('"]')) {
       let extractedUrl = imageUrl.substring(2, imageUrl.length - 2);
-      extractedUrl = extractedUrl.replace(/\\\\/g, '');
+
       if (extractedUrl.startsWith('"') && extractedUrl.endsWith('"')) {
         extractedUrl = extractedUrl.substring(1, extractedUrl.length - 1);
       }
+      return extractedUrl;
+    } else if (imageUrl.startsWith('["') && imageUrl.endsWith('"')) {
+      let extractedUrl = imageUrl.substring(2, imageUrl.length - 1); // Remove [" and "
       return extractedUrl;
     }
     return imageUrl;

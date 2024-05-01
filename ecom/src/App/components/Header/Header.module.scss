@@ -3,5 +3,42 @@
   justify-content: space-between;
   margin-bottom: 100px;
   align-items: center;
-  height: 90px;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+
+    // .burgerMenu {
+    //   display: block;
+    // }
+  }
 }
+
+// .navbarlinks {
+//   display: flex;
+//   align-items: center;
+//   gap: 20px;
+
+//   // @media (max-width: 768px) {
+//   //   display: none;
+//   // }
+// }
+
+// .burgerMenu {
+//   display: none;
+//   cursor: pointer;
+// }
+
+// .burgerLine {
+//   width: 25px;
+//   height: 3px;
+//   background-color: #333;
+//   margin-bottom: 5px;
+// }
+
+// .navOpen {
+//   display: block;
+// }
+
+// .navClosed {
+//   display: none;
+// }
