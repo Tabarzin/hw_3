@@ -4,10 +4,17 @@ import { categoryStore } from '@stores/CategoryStore';
 import { useEffect } from 'react';
 import { runInAction } from 'mobx';
 import Text from '@components/Text';
+import styles from './Categories.module.scss';
+
+const isValidImageURL = (url: string) => {
+  const imageUrlPattern = /\.(jpeg|jpg|gif|png)$/;
+  return imageUrlPattern.test(url);
+};
 
 interface Category {
   id: number;
   name: string;
+  image: string;
 }
 
 const Categories = observer(() => {
@@ -22,10 +29,17 @@ const Categories = observer(() => {
       <Header />
       <Text tag="h2" children="Categories" />
 
-      <ul>
-        {categoryStore.getCategories.map((category: Category) => (
-          <li key={category.id}>{category.name}</li>
-        ))}
+      <ul className={styles.categories_block}>
+        {categoryStore.getCategories
+          .filter((category: Category) => {
+            return category.image && isValidImageURL(category.image);
+          })
+          .map((category: Category) => (
+            <li key={category.id}>
+              <img src={category.image} alt={category.name} className={styles.category_image} />
+              <Text>{category.name}</Text>
+            </li>
+          ))}
       </ul>
     </div>
   );

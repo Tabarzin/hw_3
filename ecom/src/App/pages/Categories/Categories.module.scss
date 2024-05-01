@@ -1,0 +1,12 @@
+.category_image {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+}
+
+.categories_block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style-type: none;
+}
