@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { action, makeAutoObservable, runInAction } from 'mobx';
 
 interface Product {
@@ -16,7 +17,7 @@ interface Product {
 class CategoryStore {
   private products: Product[] = [];
   private filteredProducts: Product[] = [];
-  private categories: { id: number; name: string }[] = [];
+  private categories: { id: number; name: string; image: string }[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -46,19 +47,22 @@ class CategoryStore {
     return this.categories;
   }
 
-  private fetchCategories = action(() => {
-    fetch('https://api.escuelajs.co/api/v1/categories')
-      .then((response) => response.json())
-      .then(
-        action((data) => {
-          this.setCategories(data);
-        }),
-      )
-      .catch((error) => console.error('Error fetching categories:', error));
+  fetchCategories = action(async () => {
+    try {
+      const response = await axios.get('https://api.escuelajs.co/api/v1/categories');
+      runInAction(() => {
+        this.setCategories(response.data);
+      });
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
   });
 
-  private setCategories = action((data: { id: number; name: string }[]) => {
-    this.categories = data;
+  // private setCategories = action((data: { id: number; name: string }[]) => {
+  //   this.categories = data;
+  // });
+  private setCategories = action((data: { id: number; name: string; image: string }[]) => {
+    this.categories = data.map(({ id, name, image }) => ({ id, name, image }));
   });
 }
 
