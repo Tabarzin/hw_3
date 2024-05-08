@@ -1,5 +1,6 @@
 import Text from '@components/Text';
 import styles from './BackButton.module.scss';
+import React from 'react';
 
 const BackButton = () => {
   return (

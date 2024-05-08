@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React from 'react';
 import AboutUs from './pages/AboutUs';
 import Products from './pages/Products';
 import ProductPage from './pages/ProductPage';
 import Categories from './pages/Categories';
 import './App.module.scss';
+import { observer } from 'mobx-react-lite';
 
 const App = () => {
   return (
@@ -11,7 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Products />} />
         <Route path="/product">
-          <Route path=":id" element={<ProductPage productId={'id'} />} />
+          <Route path=":id" element={<ProductPage />} />
         </Route>
         <Route path="/about" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />

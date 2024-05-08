@@ -1,4 +1,5 @@
 import styles from './ProductsTitle.module.scss';
+import React from 'react';
 
 const ProductsTitle = () => {
   return (

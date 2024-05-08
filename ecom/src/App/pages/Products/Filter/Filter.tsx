@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import MultiDropdown, { Option } from '@components/MultiDropdown';
 import { categoryStore } from '@stores/CategoryStore';
-import { searchStore } from '@/stores/SearchStore';
+import { searchStore } from '@stores/SearchStore';
 import { useSearchParams } from 'react-router-dom';
 
 const Filter: React.FC = observer(() => {
@@ -19,9 +19,16 @@ const Filter: React.FC = observer(() => {
     searchStore.filterByCategories(categoryIds);
   }, [categoryIds]);
 
+  // const handleCategoryChange = (selectedOptions: Option[]) => {
+  //   const selectedCategoryIds = selectedOptions.map((option) => parseInt(option.key));
+  //   setSearchParams({ categories: selectedCategoryIds });
+  //   searchStore.filterByCategories(selectedCategoryIds);
+  // };
+
   const handleCategoryChange = (selectedOptions: Option[]) => {
     const selectedCategoryIds = selectedOptions.map((option) => parseInt(option.key));
-    setSearchParams({ categories: selectedCategoryIds });
+    const categoryStrings = selectedCategoryIds.map(String); // Convert numbers to strings
+    setSearchParams({ categories: categoryStrings });
     searchStore.filterByCategories(selectedCategoryIds);
   };
 

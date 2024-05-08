@@ -1,6 +1,7 @@
 import Header from '@components/Header';
 import { observer } from 'mobx-react-lite';
 import { categoryStore } from '@stores/CategoryStore';
+import React from 'react';
 import { useEffect } from 'react';
 import { runInAction } from 'mobx';
 import Text from '@components/Text';

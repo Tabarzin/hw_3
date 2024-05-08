@@ -13,8 +13,10 @@ class ProductStore {
   fetchProducts = async () => {
     try {
       const fetchedProducts = await getAllProducts();
+
       runInAction(() => {
         this.products = [...this.products, ...fetchedProducts];
+
         this.hasMore = fetchedProducts.length > 0;
       });
     } catch (error) {
@@ -31,7 +33,7 @@ class ProductStore {
       }
       return extractedUrl;
     } else if (imageUrl.startsWith('["') && imageUrl.endsWith('"')) {
-      let extractedUrl = imageUrl.substring(2, imageUrl.length - 1); // Remove [" and "
+      let extractedUrl = imageUrl.substring(2, imageUrl.length - 1);
       return extractedUrl;
     }
     return imageUrl;

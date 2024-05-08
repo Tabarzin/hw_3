@@ -1,44 +1,39 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    // "baseUrl": "src",
-    // "paths": {
-    //   "components/*": ["App/components/*"],
-    //   "pages/*": ["App/pages/*"],
-    //   "configs": ["config/*"],
-    //   "styles/*": ["styles/*"],
-    //   "assets": ["assets/*"]
-    // },
-
-    "baseUrl": ".",
+    "types": ["@types/babel__core"],
+    "lib": ["es2016", "dom"],
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/App/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@pages/*": ["src/App/pages/*"],
-      "@styles/*": ["src/App/styles/*"],
-      "@api/*": ["src/api/*"],
-      "@stores/*": ["src/stores/*"]
+      "@components/*": ["App/components/*"],
+      "@config/*": ["App/config/*"],
+      "@styles/*": ["styles/*"],
+      "@stores/*": ["stores/*"],
+      "@api/*": ["api/*"],
+      "@assets/*": ["assets/*"]
     },
-
-    "moduleResolution": "node",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
+    // Не создавать выходные файлы компилятора, например исходный код JavaScript. Для нас это делает Babel.
     "noEmit": true,
-    "jsx": "react-jsx",
-
+    // Разрешите импорт файлов .js, а не только файлы .ts и .tsx.
+    "allowJs": true,
+    // Включает создание файлов исходной карты. Эти файлы позволяют отладчикам и другим инструментам отображать исходный код.
+    "sourceMap": true,
+    // Флаг strict включает широкий диапазон действий при проверке типов, что повышает надежность проверки типов
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "module": "es6",
+    "target": "es6",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules" // auto-genertes virtual .d.ts for an every css file
+      }
+    ]
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+
+  "include": ["src/**/*", "declarations.d.ts"], // какие файлы включены в проверку
+  "exclude": ["node_modules"] // какие файлы исключены
 }

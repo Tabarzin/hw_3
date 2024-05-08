@@ -1,6 +1,7 @@
 import styles from './CartUser.module.scss';
 import bag from '@assets/bag.svg';
 import user from '@assets/user.svg';
+import React from 'react';
 
 const CartUser = () => {
   return (
