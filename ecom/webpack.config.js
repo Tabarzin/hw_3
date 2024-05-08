@@ -1,16 +1,15 @@
 const path = require('path');
-
-const buildPath = path.resolve(__dirname, 'dist');
-const srcPath = path.resolve(__dirname, 'src');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const isProd = process.env.NODE_ENV === 'production';
 
+const srcPath = path.resolve(__dirname, 'src');
+
 const getSettingsForStyles = (withModules = false) => {
-  // Заменяем в нашей функции style-loader на mini-css-extract-plugin
   return [
     isProd ? MiniCssExtractPlugin.loader : 'style-loader',
     !withModules
@@ -38,26 +37,25 @@ const getSettingsForStyles = (withModules = false) => {
 module.exports = {
   entry: path.join(srcPath, 'index.tsx'),
   output: {
-    path: buildPath,
-
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    clean: true,
   },
-  target: !isProd ? 'web' : 'browserslist',
+  target: 'web',
+  optimization: {
+    minimize: isProd,
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      //   template: path.join(srcPath, 'index.html'),
       template: path.resolve(__dirname, 'index.html'),
     }),
-    !isProd && new ReactRefreshWebpackPlugin(),
-    //Добавим плагин в plugins
-    isProd &&
-      new MiniCssExtractPlugin({
-        // Для того чтобы файл со стилями не кэшировался в браузере добавим filename
-        filename: '[name]-[hash].css',
-      }),
+    new MiniCssExtractPlugin({
+      filename: isProd ? '[name].[contenthash].css' : '[name].css',
+      chunkFilename: isProd ? '[id].[contenthash].css' : '[id].css',
+    }),
     new TsCheckerPlugin(),
-  ].filter(Boolean),
-
+  ],
   module: {
     rules: [
       {
@@ -69,7 +67,6 @@ module.exports = {
         exclude: /\.module\.s?css$/,
         use: getSettingsForStyles(),
       },
-
       {
         test: /\.(png|svg|jpg|jpeg)$/,
         type: 'asset',
@@ -89,9 +86,7 @@ module.exports = {
       },
     ],
   },
-
   resolve: {
-    // теперь при импорте эти расширения файлов можно не указывать
     extensions: ['.tsx', '.jsx', '.js', '.ts'],
     alias: {
       '@components': path.join(srcPath, 'App/components'),
@@ -103,11 +98,15 @@ module.exports = {
       '@assets': path.join(srcPath, 'assets'),
     },
   },
-
   devServer: {
-    host: '127.0.0.1', // хост нашего сервера
-    port: 9000, // порт, по которому к нему можно обращаться
+    host: '127.0.0.1',
+    port: 9000,
     hot: true,
     historyApiFallback: true,
+  },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512 * 1024,
+    maxAssetSize: 512 * 1024,
   },
 };
