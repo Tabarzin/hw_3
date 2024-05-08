@@ -71,16 +71,8 @@ module.exports = {
       },
 
       {
-        // test: /\.(png|svg|jpg)$/,
-        // type: 'asset',
-
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/[hash][ext][query]',
-        },
-
+        test: /\.(png|svg|jpg|jpeg)$/,
+        type: 'asset',
         parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024,

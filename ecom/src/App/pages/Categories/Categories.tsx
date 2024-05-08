@@ -37,7 +37,12 @@ const Categories = observer(() => {
           })
           .map((category: Category) => (
             <li key={category.id}>
-              <img src={category.image} alt={category.name} className={styles.category_image} />
+              <img
+                src={category.image}
+                alt={category.name}
+                className={styles.category_image}
+                referrerPolicy="no-referrer"
+              />
               <Text>{category.name}</Text>
             </li>
           ))}
