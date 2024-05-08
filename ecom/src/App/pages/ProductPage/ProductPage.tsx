@@ -60,6 +60,7 @@ const ProductPage = observer(() => {
                       className={styles.product_image}
                       src={imageUrl}
                       alt={`Product Image ${index + 1} `}
+                      referrerPolicy="no-referrer"
                     />
                   </SwiperSlide>
                 ))}

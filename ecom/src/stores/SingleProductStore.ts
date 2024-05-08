@@ -49,6 +49,7 @@ class ProductStore {
       const response: AxiosResponse<Product> = await axios.get<Product>(
         `https://api.escuelajs.co/api/v1/products/${id}`,
       );
+
       runInAction(() => {
         this.setProduct(response.data);
       });

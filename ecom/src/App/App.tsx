@@ -5,7 +5,6 @@ import Products from './pages/Products';
 import ProductPage from './pages/ProductPage';
 import Categories from './pages/Categories';
 import './App.module.scss';
-import { observer } from 'mobx-react-lite';
 
 const App = () => {
   return (

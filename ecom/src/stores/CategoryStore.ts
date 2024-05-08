@@ -58,9 +58,6 @@ class CategoryStore {
     }
   });
 
-  // private setCategories = action((data: { id: number; name: string }[]) => {
-  //   this.categories = data;
-  // });
   private setCategories = action((data: { id: number; name: string; image: string }[]) => {
     this.categories = data.map(({ id, name, image }) => ({ id, name, image }));
   });
