@@ -17,9 +17,15 @@ const Products = observer(() => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchTerm = searchParams.get('search') || '';
-  searchStore.setSearchTerm(searchTerm);
+
+  useEffect(() => {
+    runInAction(() => {
+      searchStore.setSearchTerm(searchTerm);
+    });
+  }, [searchTerm]);
 
   const handleSearch = (value: string) => {
+    console.log('handleSearch called with value:', value);
     setSearchParams({ search: value });
     runInAction(() => {
       searchStore.setSearchTerm(value);
@@ -44,6 +50,7 @@ const Products = observer(() => {
               className={styles.input_text}
               value={searchStore.searchTerm}
               onChange={handleSearch}
+              debounceDelay={550}
               placeholder="Search product"
             />
             <Button type="submit">Find now</Button>
