@@ -49,12 +49,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'index.html'),
+      favicon: './src/assets/favicon.svg',
     }),
     new MiniCssExtractPlugin({
       filename: isProd ? '[name].[contenthash].css' : '[name].css',
       chunkFilename: isProd ? '[id].[contenthash].css' : '[id].css',
     }),
-    new TsCheckerPlugin(),
   ],
   module: {
     rules: [
