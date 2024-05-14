@@ -10,6 +10,7 @@ import { searchStore } from '@stores/SearchStore';
 import { runInAction } from 'mobx';
 import { getAllProducts, Product } from '@api/api';
 import { categoryStore } from '@stores/CategoryStore';
+import Header from '../../../components/Header';
 
 interface ProductCardsProps {
   products: Product[];

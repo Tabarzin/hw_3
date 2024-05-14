@@ -1,6 +1,5 @@
 import { Product } from '@api/api';
 import { makeAutoObservable, computed, action, runInAction } from 'mobx';
-// import productStore from './ProductStore';
 import productStore from '@stores/ProductStore';
 
 class SearchStore {
