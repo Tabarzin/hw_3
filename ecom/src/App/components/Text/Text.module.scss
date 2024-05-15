@@ -19,6 +19,10 @@
 .text.text_view-title {
   font-size: 44px;
   line-height: 48px;
+
+  @media screen and (max-width: 350px) {
+    font-size: 32px;
+  }
 }
 
 .text.text_view-p-20 {

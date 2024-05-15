@@ -47,6 +47,9 @@
   @media screen and (max-width: 600px) {
     width: 18rem;
   }
+  @media screen and (max-width: 350px) {
+    width: 250px;
+  }
 }
 
 .price {

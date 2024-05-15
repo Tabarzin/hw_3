@@ -25,7 +25,6 @@ const Products = observer(() => {
   }, [searchTerm]);
 
   const handleSearch = (value: string) => {
-    console.log('handleSearch called with value:', value);
     setSearchParams({ search: value });
     runInAction(() => {
       searchStore.setSearchTerm(value);

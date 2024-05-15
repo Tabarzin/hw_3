@@ -20,10 +20,6 @@ const ProductPage = observer(() => {
   const { id } = useParams<{ id: string }>();
   const { product, loading, error, fetchProduct } = singleProductStore;
 
-  // React.useEffect(() => {
-  //   fetchProduct(id);
-  // }, [id, fetchProduct]);
-
   React.useEffect(() => {
     const productId = id;
 
