@@ -13,7 +13,6 @@ class SearchStore {
   setSearchTerm(term: string) {
     runInAction(() => {
       this.searchTerm = term;
-      console.log(this.searchTerm);
     });
   }
 

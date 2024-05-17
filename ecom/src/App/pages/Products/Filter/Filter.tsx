@@ -7,36 +7,25 @@ import { useSearchParams } from 'react-router-dom';
 
 const Filter: React.FC = observer(() => {
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const categories = categoryStore.getCategories.map((category: { id: number; name: string }) => ({
-    key: category.id.toString(),
-    value: category.name,
-  }));
-
+  const categoryOptions = categoryStore.getCategoryOptions;
   const categoryIds = searchParams.getAll('categories').map((id) => parseInt(id, 10));
 
   React.useEffect(() => {
     searchStore.filterByCategories(categoryIds);
   }, [categoryIds]);
 
-  // const handleCategoryChange = (selectedOptions: Option[]) => {
-  //   const selectedCategoryIds = selectedOptions.map((option) => parseInt(option.key));
-  //   setSearchParams({ categories: selectedCategoryIds });
-  //   searchStore.filterByCategories(selectedCategoryIds);
-  // };
-
   const handleCategoryChange = (selectedOptions: Option[]) => {
     const selectedCategoryIds = selectedOptions.map((option) => parseInt(option.key));
-    const categoryStrings = selectedCategoryIds.map(String); // Convert numbers to strings
+    const categoryStrings = selectedCategoryIds.map(String);
     setSearchParams({ categories: categoryStrings });
     searchStore.filterByCategories(selectedCategoryIds);
   };
 
-  const initialValue = categories.filter((category) => categoryIds.includes(parseInt(category.key)));
+  const initialValue = categoryOptions.filter((option) => categoryIds.includes(parseInt(option.key)));
 
   return (
     <MultiDropdown
-      options={categories}
+      options={categoryOptions}
       value={initialValue}
       onChange={handleCategoryChange}
       getTitle={(selectedOptions) =>

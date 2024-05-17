@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { action, makeAutoObservable, runInAction } from 'mobx';
+import { action, computed, makeAutoObservable, observable, runInAction } from 'mobx';
 
 interface Product {
   id: number;
@@ -14,6 +14,11 @@ interface Product {
   images: string[];
 }
 
+interface Option {
+  key: string;
+  value: string;
+}
+
 class CategoryStore {
   private products: Product[] = [];
   private filteredProducts: Product[] = [];
@@ -24,6 +29,13 @@ class CategoryStore {
     runInAction(() => {
       this.fetchCategories();
     });
+  }
+
+  @observable selectedCategoryIds: number[] = [];
+
+  @action setSelectedCategoryIds(categoryIds: number[]) {
+    this.selectedCategoryIds = categoryIds;
+    this.filterProductsByCategory(categoryIds);
   }
 
   setProducts(products: Product[]) {
@@ -47,6 +59,13 @@ class CategoryStore {
     return this.categories;
   }
 
+  @computed get getCategoryOptions(): Option[] {
+    return this.categories.map((category) => ({
+      key: category.id.toString(),
+      value: category.name,
+    }));
+  }
+
   fetchCategories = action(async () => {
     try {
       const response = await axios.get('https://api.escuelajs.co/api/v1/categories');
@@ -63,4 +82,4 @@ class CategoryStore {
   });
 }
 
-export const categoryStore = new CategoryStore();
+export const categoryStore = runInAction(() => new CategoryStore());
