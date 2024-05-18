@@ -7,36 +7,10 @@ import Header from '@components/Header';
 import { action } from 'mobx';
 import Card from '@components/Card';
 import Button from '@components/Button/Button';
-
-// const Cart = observer(() => {
-//   const { cart, removeFromCart, cartTotal } = cartStore;
-
-//   return (
-//     <div>
-//       <Header />
-//       <Text tag="h2">Cart</Text>
-//       {cart.length === 0 ? (
-//         <p>Your cart is empty.</p>
-//       ) : (
-//         <>
-//           <ul>
-//             {cart.map((item) => (
-//               <li key={item.id}>
-//                 {item.title} - ${item.price} {item.id} <button onClick={() => removeFromCart(item.id)}>Remove</button>
-//               </li>
-//             ))}
-//           </ul>
-//           <p>Total: ${cartTotal}</p>
-//         </>
-//       )}
-//     </div>
-//   );
-// });
-
-// export default Cart;
+import defaultImage from '@assets/defaultImage.jpeg';
 
 const Cart = observer(() => {
-  const { cartItems, removeFromCart } = cartStore;
+  const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity } = cartStore;
 
   return (
     <div>
@@ -51,15 +25,24 @@ const Cart = observer(() => {
           <>
             <ul className={styles.cart_list}>
               {cartItems.map((item) => (
-                <li key={item.id}>
+                <li className={styles.li} key={item.product.id}>
                   <Card
-                    image={item.images[1]}
-                    captionSlot={item.category.name}
-                    title={item.title}
-                    subtitle={item.description}
-                    contentSlot={`$${item.price}`}
-                    actionSlot={<Button onClick={action(() => removeFromCart(item.id))}>Remove</Button>}
+                    image={item.product.images.length >= 2 ? item.product.images[1] : defaultImage}
+                    captionSlot={item.product.category.name}
+                    title={item.product.title}
+                    subtitle={item.product.description}
+                    contentSlot={<div>${item.product.price * item.quantity}</div>}
+                    actionSlot={<Button onClick={action(() => removeFromCart(item.product.id))}>Remove</Button>}
                   />
+                  <div className={styles.round_btns}>
+                    <button className={styles.round_btn} onClick={action(() => decreaseQuantity(item.product.id))}>
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button className={styles.round_btn} onClick={action(() => increaseQuantity(item.product.id))}>
+                      +
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -76,4 +59,5 @@ const Cart = observer(() => {
     </div>
   );
 });
+
 export default Cart;

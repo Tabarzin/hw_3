@@ -1,8 +1,28 @@
 .cart_list {
   list-style-type: none;
 }
+.li {
+  margin-bottom: 20px;
+}
 .cart_wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+
+.round_btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.round_btn {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid var(--button-primary-bg);
 }
