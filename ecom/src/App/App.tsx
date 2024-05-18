@@ -4,6 +4,7 @@ import AboutUs from './pages/AboutUs';
 import Products from './pages/Products';
 import ProductPage from './pages/ProductPage';
 import Categories from './pages/Categories';
+import Cart from './pages/Cart';
 import './App.module.scss';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         </Route>
         <Route path="/about" element={<AboutUs />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

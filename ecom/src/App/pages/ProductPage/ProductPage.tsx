@@ -13,6 +13,7 @@ import BackButton from '@components/BackButton';
 import Text from '@components/Text';
 import { observer } from 'mobx-react-lite';
 import singleProductStore from '@stores/SingleProductStore';
+import { cartStore } from '@stores/CartStore';
 
 const swiperModules = [Navigation, Scrollbar, A11y];
 
@@ -72,7 +73,8 @@ const ProductPage = observer(() => {
               <Text view="title" className={styles.price}>{`$${product.price}`}</Text>
               <div className={styles.buttons}>
                 <Button>Buy Now</Button>
-                <Button>Add to Cart</Button>
+
+                <Button onClick={() => cartStore.addToCart(product)}>Add to Cart</Button>
               </div>
             </div>
           </div>
