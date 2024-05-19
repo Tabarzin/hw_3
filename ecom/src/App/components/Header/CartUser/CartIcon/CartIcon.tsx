@@ -1,7 +1,6 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { cartStore } from '@stores/CartStore';
-
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import bag from '@assets/bag.svg';
 import styles from './CartIcon.module.scss';

@@ -78,9 +78,7 @@ module.exports = {
       },
       {
         test: /\.[tj]sx?$/,
-        // use: 'babel-loader',
-        use: 'ts-loader',
-        exclude: /node_modules/,
+        use: 'babel-loader',
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -89,7 +87,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.jsx', '.js', '.ts'],
+    extensions: ['.tsx', '.jsx', '.js', '.ts', '.scss'],
     alias: {
       '@components': path.join(srcPath, 'App/components'),
       '@config': path.join(srcPath, 'config'),
@@ -98,6 +96,11 @@ module.exports = {
       '@pages': path.join(srcPath, 'App/pages'),
       '@api': path.join(srcPath, 'api'),
       '@assets': path.join(srcPath, 'assets'),
+    },
+    fallback: {
+      crypto: require.resolve('crypto-browserify'),
+      buffer: require.resolve('buffer/'),
+      stream: require.resolve('stream-browserify'),
     },
   },
   devServer: {

@@ -8,5 +8,5 @@
     "strict": true
   },
 
-  "include": ["vite.config.ts", "tsconfig.json"]
+  "include": ["tsconfig.json"]
 }

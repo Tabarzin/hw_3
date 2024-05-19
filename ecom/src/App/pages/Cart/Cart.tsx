@@ -48,9 +48,7 @@ const Cart = observer(() => {
         )}
         {cartStore.cartTotal > 0 && (
           <div className={styles.cart_total}>
-            <Text view="p-20" tag="h4">
-              Total price: ${cartStore.cartTotal}
-            </Text>
+            <Text tag="h4">Total price: ${cartStore.cartTotal}</Text>
           </div>
         )}
         <div className={styles.cart_checkout}>

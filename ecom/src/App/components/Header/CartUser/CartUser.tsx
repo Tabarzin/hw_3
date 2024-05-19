@@ -10,7 +10,9 @@ const CartUser = () => {
   return (
     <div className={styles.cartuser}>
       <CartIcon />
-      <img src={user} alt="User" />
+      <NavLink to="/profile">
+        <img src={user} alt="User" />
+      </NavLink>
     </div>
   );
 };
