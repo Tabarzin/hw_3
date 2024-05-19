@@ -1,24 +1,26 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { authStore } from '@stores/AuthStore';
-import styles from './UserProfile.module.scss';
 
-const UserProfile: React.FC = observer(() => {
-  // const { user, isAuthenticated, isLoading } = authStore;
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (!isAuthenticated) {
-  //   return <div>Please sign in to access your profile.</div>;
-  // }
+const UserProfile = observer(() => {
+  const { session } = authStore;
+  const user = session?.user;
 
   return (
     <div>
-      <h2>User Profile</h2>
-      {/* <p>Email: {user?.email}</p> */}
-      {/* Add more user information fields as needed */}
+      {user ? (
+        <div>
+          <div>
+            <img src={user.user_metadata.avatar_url} alt="Avatar" />
+          </div>
+          <div>
+            <h2>Email</h2>
+            <p>{user.email}</p>
+          </div>
+        </div>
+      ) : (
+        <p>You are not logged in.</p>
+      )}
     </div>
   );
 });
