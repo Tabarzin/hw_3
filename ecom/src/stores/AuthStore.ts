@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
 import { createClient, Session } from '@supabase/supabase-js';
 import { makeAutoObservable } from 'mobx';
-
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,7 +7,11 @@ dotenv.config();
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 
-const supabase = createClient('supabaseUrl', 'supabaseKey');
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Supabase URL and key are required');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 class AuthStore {
   session: Session | null = null;
