@@ -78,7 +78,9 @@ module.exports = {
       },
       {
         test: /\.[tj]sx?$/,
-        use: 'babel-loader',
+        // use: 'babel-loader',
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
