@@ -53,6 +53,9 @@ const Cart = observer(() => {
             </Text>
           </div>
         )}
+        <div className={styles.cart_checkout}>
+          <Button>Checkout</Button>
+        </div>
       </div>
     </div>
   );
