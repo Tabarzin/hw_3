@@ -1,1 +1,35 @@
-/home/tam/Yandex/CODINGTRAINING/KTS/hw_3_new/hw_3/ecom/node_modules/is-inside-container/cli.js
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/App/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@pages/*": ["src/App/pages/*"],
+      "@styles/*": ["src/App/styles/*"],
+      "@api/*": ["src/api/*"],
+      "@stores/*": ["src/stores/*"]
+    },
+
+    "moduleResolution": "node",
+
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
