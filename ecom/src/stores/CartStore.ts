@@ -49,7 +49,6 @@ class CartStore {
     const item = this.cartItems.find((item) => item.product.id === id);
     if (item) {
       item.quantity++;
-      console.log(item.quantity);
     }
     this.saveCartItems();
   }
@@ -58,7 +57,6 @@ class CartStore {
     const item = this.cartItems.find((item) => item.product.id === id);
     if (item && item.quantity > 1) {
       item.quantity--;
-      console.log(item.quantity);
     }
     this.saveCartItems();
   }

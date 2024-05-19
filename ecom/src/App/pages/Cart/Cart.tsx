@@ -18,9 +18,7 @@ const Cart = observer(() => {
       <Text tag="h2">Cart</Text>
       <div className={styles.cart_wrapper}>
         {cartItems.length === 0 ? (
-          <Text view="p-20" tag="h4">
-            Your cart is empty.
-          </Text>
+          <Text tag="h4">Your cart is empty.</Text>
         ) : (
           <>
             <ul className={styles.cart_list}>
