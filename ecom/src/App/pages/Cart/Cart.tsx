@@ -8,6 +8,7 @@ import { action } from 'mobx';
 import Card from '@components/Card';
 import Button from '@components/Button/Button';
 import defaultImage from '@assets/defaultImage.jpeg';
+import { NavLink } from 'react-router-dom';
 
 const Cart = observer(() => {
   const { cartItems, removeFromCart, increaseQuantity, decreaseQuantity } = cartStore;
@@ -47,13 +48,17 @@ const Cart = observer(() => {
           </>
         )}
         {cartStore.cartTotal > 0 && (
-          <div className={styles.cart_total}>
-            <Text tag="h4">Total price: ${cartStore.cartTotal}</Text>
-          </div>
+          <>
+            <div className={styles.cart_total}>
+              <Text tag="h4">Total price: ${cartStore.cartTotal}</Text>
+            </div>
+            <div className={styles.cart_checkout}>
+              <NavLink to="/profile">
+                <Button>Checkout</Button>
+              </NavLink>
+            </div>
+          </>
         )}
-        <div className={styles.cart_checkout}>
-          <Button>Checkout</Button>
-        </div>
       </div>
     </div>
   );

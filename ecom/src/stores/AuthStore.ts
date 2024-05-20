@@ -1,6 +1,5 @@
 import { createClient, Session } from '@supabase/supabase-js';
 import { makeAutoObservable } from 'mobx';
-import process from 'process';
 
 // const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 // const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -13,7 +12,7 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('Supabase URL and key are required');
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = createClient(supabaseUrl, supabaseKey);
 
 class AuthStore {
   session: Session | null = null;
