@@ -1,5 +1,5 @@
 import { createClient, Session } from '@supabase/supabase-js';
-import { makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 // const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
 // const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -18,11 +18,20 @@ class AuthStore {
   session: Session | null = null;
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      session: observable,
+      setSession: action.bound,
+      initAuth: action.bound,
+    });
     this.initAuth();
   }
 
   initAuth = () => {
+    const sessionData = localStorage.getItem('supabaseSession');
+    if (sessionData) {
+      this.session = JSON.parse(sessionData);
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       this.setSession(session);
     });
@@ -38,11 +47,26 @@ class AuthStore {
 
   setSession = (session: Session | null) => {
     this.session = session;
+
+    if (session) {
+      localStorage.setItem('supabaseSession', JSON.stringify(session));
+    } else {
+      localStorage.removeItem('supabaseSession');
+    }
   };
 
   get isAuthenticated() {
     return !!this.session;
   }
+
+  logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Error logging out:', error.message);
+    } else {
+      this.setSession(null);
+    }
+  };
 }
 
 export const authStore = new AuthStore();

@@ -6,19 +6,23 @@ import avatar from '@assets/avatar.png';
 
 import LoginRegisterForm from './LoginRegisterForm';
 import Header from '@components/Header';
+import Button from '@components/Button';
 
 const UserProfile = observer(() => {
-  const { session } = authStore;
+  const { session, logout } = authStore;
   const user = session?.user;
   const [showLoginRegister, setShowLoginRegister] = useState(!user);
 
   const handleLogin = () => {
-    // Handle login logic here
     setShowLoginRegister(false);
   };
 
+  const handleLogout = async () => {
+    await logout();
+    setShowLoginRegister(true);
+  };
+
   const handleRegister = () => {
-    // Handle registration logic here
     setShowLoginRegister(false);
   };
 
@@ -35,10 +39,11 @@ const UserProfile = observer(() => {
           <div>
             <h2>Привет!</h2>
             <p>{user.email}</p>
+            <Button onClick={handleLogout}> Log out</Button>
           </div>
         </div>
       ) : (
-        <p>You are not logged in.</p>
+        <p>Please, check your email.</p>
       )}
     </div>
   );
