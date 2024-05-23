@@ -37,7 +37,7 @@ const getSettingsForStyles = (withModules = false) => {
 module.exports = {
   entry: path.join(srcPath, 'index.tsx'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
     clean: true,
   },
