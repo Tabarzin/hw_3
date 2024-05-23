@@ -1,0 +1,75 @@
+:root {
+  --screen-color: #fff;
+  --line-color: #f3f3f3;
+  --brand: rgba(81, 133, 129, 1);
+  --text-primary: rgba(0, 0, 0, 1);
+  --text-secondary: #afadb5;
+  --text-accent: rgba(81, 133, 129, 1);
+  --loader-bg: rgba(81, 133, 129, 1);
+  --brand-hover: #86aaa7;
+  --button-primary-bg: #518581;
+  --button-primary-bg-disabled: #d9d9d9;
+  --button-primary-text: #fff;
+  --button-primary-bg-hover: rgba(134, 170, 167, 1);
+  --button-primary-text-hover: rgba(255, 255, 255, 1);
+  --button-primary-bg-active: rgba(72, 119, 115, 1);
+  --button-primary-text-active: rgba(255, 255, 255, 1);
+  --button-primary-bg-disabled: rgba(217, 217, 217, 1);
+  --button-primary-text-disabled: rgba(255, 255, 255, 1);
+  --brand-active: #487773;
+  --card-bg: #fff;
+  --card-image-bg: #d9d9d9;
+  --shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+  --input-border: #fff;
+  --input-bg: #fff;
+  --input-border-focus: #518581;
+  --input-bg-focus: #fff;
+  --input-border-disabled: #fff;
+  --input-bg-disabled: #fff;
+  --input-placeholder: rgba(175, 173, 181, 1);
+  --input-text: rgba(0, 0, 0, 1);
+  --input-text-focus: rgba(0, 0, 0, 1);
+  --input-text-disabled: rgba(0, 0, 0, 0.2);
+
+  --checkbox-bg: #fff;
+  --checkbox-border-hover: #518581;
+  --checkbox-bg-hover: #fff;
+
+  --checkbox-bg-disabled: rgba(255, 255, 255, 0.5);
+  --checkbox-border: rgba(255, 255, 255, 1);
+  --checkbox-border-disabled: rgba(255, 255, 255, 0);
+  --checkbox-check: rgba(81, 133, 129, 1);
+  --checkbox-check-disabled: rgba(0, 0, 0, 0.2);
+  --checkbox-check-hover: rgba(81, 133, 129, 1);
+
+  --dropdown-options-bg: #fff;
+  --space-xs: 12px;
+  --space-xxs: 8px;
+  --space-xl: 20px;
+  --border-radius: 0px;
+  --space-s: 14px;
+  --space-m: 24px;
+  --space-l: 20px;
+
+  --max-lines-count: 1;
+}
+
+// Registration Form
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$text-color: #2c3e50;
+$background-color: #ecf0f1;
+$border-radius: 8px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-time: 0.3s;
+
+// User Profile
+
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$text-color: #2c3e50;
+$background-color: #ecf0f1;
+$border-radius: 8px;
+$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$transition-time: 0.3s;
+$avatar-size: 100px;

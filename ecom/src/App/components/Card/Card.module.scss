@@ -1,0 +1,62 @@
+@import "@styles/variables.scss";
+
+.card {
+  cursor: pointer;
+  width: 100%;
+  max-width: 360px;
+  transition: box-shadow 0.3s ease;
+  border-radius: var(--border-radius, 0px);
+  background: var(--card-bg, #fff);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--shadow);
+}
+
+.card__header {
+  background-color: var(--card-image-bg);
+  position: relative;
+}
+
+.card__header::after {
+  content: "";
+  padding-top: 100%;
+  display: block;
+}
+
+.card__header_src {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.card__body {
+  padding: var(--space-xl) var(--space-xs);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 197 / 180;
+}
+
+.card__caption {
+  margin-bottom: var(--space-xxs);
+}
+.card__subtitle {
+  margin-top: var(--space-xxs);
+}
+
+.card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-l);
+}
+
+.card__action {
+  margin-left: auto;
+  padding-left: var(--space-xxs);
+}

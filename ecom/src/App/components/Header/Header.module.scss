@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+  align-items: center;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+  }
+}

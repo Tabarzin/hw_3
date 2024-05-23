@@ -1,0 +1,13 @@
+.about {
+  margin-bottom: 20px;
+
+  &_text {
+    margin-bottom: 20px;
+  }
+  &_team {
+    width: 100%;
+    max-width: 500px;
+    float: left;
+    margin-right: 10px;
+  }
+}
