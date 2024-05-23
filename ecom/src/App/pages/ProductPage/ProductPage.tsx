@@ -72,8 +72,6 @@ const ProductPage = observer(() => {
               </Text>
               <Text view="title" className={styles.price}>{`$${product.price}`}</Text>
               <div className={styles.buttons}>
-                <Button>Buy Now</Button>
-
                 <Button onClick={() => cartStore.addToCart(product)}>Add to Cart</Button>
               </div>
             </div>
