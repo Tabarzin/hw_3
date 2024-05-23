@@ -59,7 +59,7 @@ const LoginRegisterForm = ({ onLogin, onRegister }: LoginRegisterFormProps) => {
   };
 
   return (
-    <div className={styles.auth_form}>
+    <div className={styles.auth_form} role="form" aria-labelledby="auth-form-heading">
       <h2>{isLogin ? 'Sign In' : 'Sign Up'}</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Input value={email} type="email" placeholder="Email" onChange={handleEmailChange} />

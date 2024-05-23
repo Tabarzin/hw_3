@@ -21,6 +21,9 @@ class SearchStore {
   }
 
   get filteredProducts() {
+    if (productStore.products.length === 0) {
+      return [];
+    }
     const filterBySearch = (product: Product) => product.title.toLowerCase().includes(this.searchTerm.toLowerCase());
 
     const filterByCategories = (product: Product) =>

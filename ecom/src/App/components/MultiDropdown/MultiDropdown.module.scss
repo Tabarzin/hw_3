@@ -1,4 +1,3 @@
-// @import "../../../styles/variables.scss";
 @import "@styles/variables.scss";
 
 .dropdown {
@@ -45,19 +44,6 @@
 .dropdown__option_selected {
   color: var(--text-secondary);
 }
-/* .dropdown-options {
-  display: flex;
-  width: 300px;
-  flex-direction: column;
-   align-items: flex-start; 
-  border-radius: var(--border-radius, 0px);
-   background: var(--dropdown-options-bg, #fff); 
-  
-
-  
-  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
-
- */
 
 .option {
   display: flex;
